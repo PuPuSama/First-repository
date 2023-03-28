@@ -1,8 +1,53 @@
-#include <studio.h>
-using namespace std;
-int main()
-{
-cout<<"hello world!"<<endl;
-system('pause');
-return 0;
+#include <stdio.h>
+
+#define MAX_SIZE 100 // 定义顺序表最大长度
+
+typedef struct {
+    int data[MAX_SIZE]; // 存储数据元素的数组
+    int length;         // 顺序表当前长度
+} SqList;
+
+// 初始化顺序表，将所有元素置为0
+void InitList(SqList *L) {
+    for (int i = 0; i < MAX_SIZE; i++) {
+        L->data[i] = 0;
+    }
+    L->length = 0;
+}
+
+// 在有序顺序表L中插入元素x
+void Insert(SqList *L, int x) {
+    int i = 0;
+    while (i < L->length && L->data[i] < x) { // 查找插入位置
+        i++;
+    }
+    // 将i及其之后的元素后移一位
+    for (int j = L->length - 1; j >= i; j--) {
+        L->data[j+1] = L->data[j];
+    }
+    L->data[i] = x; // 插入元素
+    L->length++;    // 长度加1
+}
+
+// 打印顺序表中的元素
+void PrintList(SqList L) {
+    for (int i = 0; i < L.length; i++) {
+        printf("%d ", L.data[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    SqList L;
+    InitList(&L); // 初始化顺序表
+    Insert(&L, 2);
+    Insert(&L, 4);
+    Insert(&L, 6);
+    Insert(&L, 8);
+    printf("顺序表中的元素为：");
+    PrintList(L); // 打印顺序表
+    Insert(&L, 5);
+    printf("插入元素5后，顺序表中的元素为：");
+    PrintList(L); // 打印插入元素后的顺序表
+    return 0;
 }
