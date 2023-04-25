@@ -1,53 +1,45 @@
-#include <stdio.h>
-
-#define MAX_SIZE 100 // 定义顺序表最大长度
-
-typedef struct {
-    int data[MAX_SIZE]; // 存储数据元素的数组
-    int length;         // 顺序表当前长度
-} SqList;
-
-// 初始化顺序表，将所有元素置为0
-void InitList(SqList *L) {
-    for (int i = 0; i < MAX_SIZE; i++) {
-        L->data[i] = 0;
-    }
-    L->length = 0;
+html
+<nav>
+  <ul>
+    <li><a href="#" class="active">网站首页</a></li>
+    <li><a href="#">关于我们</a></li>
+    <li><a href="#">产品介绍</a></li>
+    <li><a href="#">技术创新</a></li>
+    <li><a href="#">商务合作</a></li>
+  </ul>
+</nav>
+css
+nav {
+  background-color: #00cc66; /* 绿色 */
 }
 
-// 在有序顺序表L中插入元素x
-void Insert(SqList *L, int x) {
-    int i = 0;
-    while (i < L->length && L->data[i] < x) { // 查找插入位置
-        i++;
-    }
-    // 将i及其之后的元素后移一位
-    for (int j = L->length - 1; j >= i; j--) {
-        L->data[j+1] = L->data[j];
-    }
-    L->data[i] = x; // 插入元素
-    L->length++;    // 长度加1
+nav ul {
+  margin: 0 auto; /* 横向居中 */
+  padding: 0;
+  list-style: none;
 }
 
-// 打印顺序表中的元素
-void PrintList(SqList L) {
-    for (int i = 0; i < L.length; i++) {
-        printf("%d ", L.data[i]);
-    }
-    printf("\n");
+nav ul li {
+  float: left; /* 浮动 */
 }
 
-int main() {
-    SqList L;
-    InitList(&L); // 初始化顺序表
-    Insert(&L, 2);
-    Insert(&L, 4);
-    Insert(&L, 6);
-    Insert(&L, 8);
-    printf("顺序表中的元素为：");
-    PrintList(L); // 打印顺序表
-    Insert(&L, 5);
-    printf("插入元素5后，顺序表中的元素为：");
-    PrintList(L); // 打印插入元素后的顺序表
-    return 0;
+nav ul li a {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
 }
+
+nav ul li a:hover {
+  background-color: #ffff00; /* 黄色 */
+}
+
+nav ul li a.active {
+  background-color: #ffff00; /* 选中底色为黄色 */
+}
+nav 元素是导航栏的容器，使用 background-color 属性设置背景色为绿色。
+ul 元素是无序列表，使用 margin: 0 auto; 属性将其水平居中。
+li 元素是列表项，使用 float: left; 属性将其浮动到左侧。
+a 元素是链接，使用 display: block; 属性将其显示为块级元素，使其占据整个列表项的空间。使用 padding 属性添加内边距，使链接更加易于点击。使用 color 属性设置文字颜色为白色，使用 text-decoration 属性去掉链接下划线。
+a:hover 伪类用于设置鼠标悬停时链接的样式，使用 background-color 属性将背景色设置为黄色。
+a.active 类用于设置当前选中的链接的样式，使用 background-color 属性将背景色设置为黄色。
